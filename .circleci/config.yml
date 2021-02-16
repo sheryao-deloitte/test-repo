@@ -17,7 +17,10 @@ jobs:
     steps:
       - checkout #checkout source code to working directory
       - run:
-          command: python testfile.py
+          command: |
+            pwd
+            python testfile.py
+
           name: Test
 
 workflows:
