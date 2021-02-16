@@ -17,10 +17,7 @@ jobs:
     steps:
       - checkout #checkout source code to working directory
       - run:
-          command: |
-            pwd
-          # pip install -r requirement.txt
-            python testfile.py
+          command: python testfile.py
           name: Test
 
 workflows:
