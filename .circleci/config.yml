@@ -19,6 +19,7 @@ jobs:
       - run:
           command: |
             pwd
+            pip install -r requirement.txt
             python testfile.py
 
           name: Test
