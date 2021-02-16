@@ -4,18 +4,26 @@ orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  build-and-test:
-    executor: python/default
+  build:
+    working_directory: ~/test-repo
+    docker:
+      - image: circleci/python:3.6.4
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
+        environment:
+          POSTGRES_USER: root
+
     steps:
-      - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
+      - checkout #checkout source code to working directory
       - run:
-          command: ./manage.py test
+          command: |
+            pwd
+            pip install -r requirements.txt
+            python testfile.py
           name: Test
 
 workflows:
   main:
     jobs:
-      - build-and-test
+      - build
